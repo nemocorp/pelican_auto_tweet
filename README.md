@@ -51,12 +51,17 @@ The script need some configuration. For this, create the file `conf.py`.
 	|- pelican_tweet_summary.py
 	|- README
 
-In this script, you **have** to define four variables for the [Twitter API](https://dev.twitter.com) : 
+In this script, you **have** to define four variables for the [Twitter API](https://dev.twitter.com): 
 
 	CONSUMER_KEY = ''
 	CONSUMER_SECRET = ''
 	ACCESS_TOKEN = ''
 	ACCESS_TOKEN_SECRET = ''
+
+And two variables for the [Bitly API](https://bitly.com/):
+
+	BITLY_USER = ''
+	BITLY_API_KEY = ''
 
 Now, you can use the scripts.
 
