@@ -9,15 +9,15 @@ For now, I only wrote two scripts:
 - `pelican_auto_tweet.py`
 - `pelican_tweet_summary.py`
 
-The first one is usefull to automatically post a tweet on Twitter for every new blog post. As Pelican is text-based and often used with Git, this script makes use of Git logs to find new posts. More details are given below.
+The first one is usefull to automatically post a tweet on Twitter for the latest blog post. As Pelican is text-based and often used with Git, this script makes use of Git logs to find new posts. More details are given below.
 
-The second script posts on Twitter for each article posted on the blog in the last 7 days. Like the previous script, I give some details below.
+The second script posts a tweet on Twitter for each article posted on the blog in the last 7 days. Like the previous script, I give some details below.
 
 ## Installation
 
 Just fork this repo! :)
 
-Since I use two external libraries, you need to install them if you want to use these scripts.
+Since I use two external libraries, you also need to install them if you want to use these scripts.
 
 ### Python-Twitter
 
@@ -45,13 +45,13 @@ The results of requests made to Bitly API are Unicode encoded, so I also need a 
 
 The script need some configuration. For this, create the file `conf.py`.
 
-	~
+	/
 	|- conf.py
 	|- pelican_auto_tweet.py
 	|- pelican_tweet_summary.py
 	|- README
 
-In this script, you **have** to define four variables for the [Twitter API]() : 
+In this script, you **have** to define four variables for the [Twitter API](https://dev.twitter.com) : 
 
 	CONSUMER_KEY = ''
 	CONSUMER_SECRET = ''
@@ -70,7 +70,18 @@ The tweet message is the title of the post (post variable `Title:`), followed by
 
 The tweet sent use the following format : 
 
-> {{TITLE}}{{URL}} #blog
+> {{TITLE}} {{URL}} #blog
+
+To launch the script, you have some options.
+
+1. Run it directly from the root of your Pelican directory:
+	```
+	$ python ~/pelican_auto_tweet.py
+	```
+2. Run it from anywhere, and give it the path to the root of your Pelican directory:
+	```
+	$ python ~/pelican_auto_tweet.py ~/pelican_blog/
+	```	
 
 ### Pelican_tweet_summary
 
@@ -78,11 +89,21 @@ This script sends one tweet for each blog post published in the last 7 days. Eac
 
 I use the same method I used for the previous script to get the URL of the posts, or their title.
 
+The usage of this script is quite the same as the previous one
+
+1. Run it directly from the root of your Pelican directory:
+	```
+	$ python ~/pelican_tweet_summary.py
+	```
+2. Run it from anywhere, and give it the path to the root of your Pelican directory:
+	```
+	$ python ~/pelican_tweet_summary.py ~/pelican_blog/
+
 ## More
 
 I wrote some posts on my blog about this script : 
 
-- [Presentation](https://quack1.me/) ;
-- [How to automate the publication with Git](https://quack1.me/).
+- [Presentation](https://quack1.me/pelican_auto_tweet.html) ;
+- [How to automate the publication with Git #TODO](https://quack1.me/).
 
 I created the theme I use on my blog, which is available [on Github](https://github.com/quack1/notebook).
