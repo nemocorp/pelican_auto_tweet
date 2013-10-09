@@ -98,6 +98,7 @@ The usage of this script is quite the same as the previous one
 2. Run it from anywhere, and give it the path to the root of your Pelican directory:
 	```
 	$ python ~/pelican_tweet_summary.py ~/pelican_blog/
+	```
 
 ## More
 
