@@ -128,8 +128,9 @@ def get_post_infos(filename):
 
 def first_tweet():
 	global FIRST_TWEETED
+	global SITE_BASE_URL
 	if not FIRST_TWEETED:
-		msg = '#blogReplay Voici les articles publiés ces 7 derniers jours sur https://quack1.me'
+		msg = '#blogReplay Voici les articles publiés ces 7 derniers jours sur %s'%SITE_BASE_URL
 		twitter_send(msg)
 		FIRST_TWEETED = True
 

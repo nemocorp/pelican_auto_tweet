@@ -71,6 +71,8 @@ I use this script to tweet the link of my **last** blog post.
 
 I use Git to backup my blog. After each new blog post, I commit the new file with a commit message that starts with '[POST]'. I adapted the script to my own needs, so it get the last commit message, and if the message starts with '[POST]', it tweets it.
 
+The script gets the title and the URL of the lasts posts directly from the source file. If there are many files involved in the commit, every file that is located in `content/` and has a `.md` or `.rst` extension will be considered as one of the lasts posts for which a tweet will be send.
+
 The tweet message is the title of the post (post variable `Title:`), followed by its URL. To construct the URL, the script extract the URL of the site in the `pelicanconf.py` file (variable `SITEURL=`), and append to it the slug of the blog post (variable `Slug:` in the header of the blog post file).
 
 The tweet sent use the following format : 
