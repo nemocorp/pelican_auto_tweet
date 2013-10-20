@@ -145,7 +145,7 @@ if log_message.startswith('[POST]'):
 	commands.getoutput('make ssh_upload')
 	for filename in files:
 		base, ext = os.path.splitext(filename)
-		if ext in ('.rst','.md'):
+		if base.startswith('content/') and ext in ('.rst','.md'):
 			title,slug = get_post_infos(os.path.join(BASE_DIR, filename))
 			url = SITE_BASE_URL + slug + ".html"
 			s = BITLY_API.shorten(url)
