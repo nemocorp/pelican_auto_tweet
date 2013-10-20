@@ -37,7 +37,7 @@ Both Markdown and Rest syntax are supported. The 'Slug' tag **have** to be set
 	so the script can create the complete URI to the post.'''
 
 __author__ = 'quack1'
-__version = '0.2'
+__version = '0.3'
 #	**About Author** :
 #    
 #	Founder : Quack1
@@ -52,6 +52,10 @@ __version = '0.2'
 #		- Publish tweets, one every 3 minutes
 #	  - 0.2
 #		- Add support of Bitly
+#	  - 0.3
+#		- Make use of Bitly optional.
+#		  If the script cannot connect to Bitly API, the url of the blog posts
+#		  are sent as they are displayed in browser.
 
 import datetime
 import os
@@ -147,7 +151,15 @@ if not BASE_DIR:
 
 get_site_base_url()
 
-BITLY_API = bitlyapi.Connection(BITLY_USER, BITLY_API_KEY)
+# Trying to connect to BitlyAPI
+try:
+	if not BITLY_USER:
+		print("Error. No BITLY_USER defined.")
+	if not BITLY_API_KEY:
+		print("Error. No BITLY_API_KEY defined.")
+	BITLY_API = bitlyapi.Connection(BITLY_USER, BITLY_API_KEY)
+except:
+	BITLY_API = None
 
 CONTENT_DIR = os.path.join(BASE_DIR,'content/')
 for filename in os.listdir(CONTENT_DIR):
@@ -183,9 +195,10 @@ if len(SLUGS):
     	# Wait 3 miutes between 2 publications
 		time.sleep(180)
 		url = SITE_BASE_URL + a['slug'] + ".html"
-		s = BITLY_API.shorten(url)
-		u = s['url']
-		url = unicodedata.normalize('NFKD', u).encode('ascii','ignore')
+		if BITLY_API:
+			s = BITLY_API.shorten(url)
+			u = s['url']
+			url = unicodedata.normalize('NFKD', u).encode('ascii','ignore')
 		title = a['title']
 		max_length = 140 - len("#blogReplay ") - len(" #blog") - 5 - len(url)
 		if len(title) >= max_length:
