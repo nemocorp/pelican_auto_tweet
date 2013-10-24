@@ -141,8 +141,8 @@ log_message = result.splitlines()[0]
 files = result.splitlines()[1:]
 
 if log_message.startswith('[POST]'):
-	commands.getoutput('git push')
-	commands.getoutput('make ssh_upload')
+	os.system('git push')
+	os.system('make ssh_upload')
 	for filename in files:
 		base, ext = os.path.splitext(filename)
 		if base.startswith('content/') and ext in ('.rst','.md'):
